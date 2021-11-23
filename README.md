@@ -12,7 +12,8 @@ herkou(postgresql)
 
 ### Try it out
 
-deta link(published api url): https://pio7h0.deta.dev/docs
+deta link(published api url): https://pio7h0.deta.dev/docs   
+you can try this using ThunderClient(vscode) or in Postman
 
 ## To use
 
