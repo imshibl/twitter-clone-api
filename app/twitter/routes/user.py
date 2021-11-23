@@ -15,7 +15,7 @@ get_db = database.get_db
 def get_all_users(db:Session = Depends(get_db), current_user:schemas.User = Depends(oauth2.get_current_active_user)):
     return user.get_all(db, current_user)
 
-@router.get("users/user/me", response_model=schemas.CurrentUserProfile)
+@router.get("/users/user/me", response_model=schemas.CurrentUserProfile)
 def get_my_profile(current_user:schemas.User = Depends(oauth2.get_current_active_user)):
     return current_user
 
@@ -28,10 +28,10 @@ def get_selected_user(username: str ,db:Session = Depends(get_db),  current_user
 def followuser(user_id:int, db:Session = Depends(get_db), current_user:schemas.User = Depends(oauth2.get_current_active_user) ):
     
     user = db.query(models.User).filter(models.User.id == user_id).first()
-    new_following = models.Following(following=user.id, following_name=user.name, follower_id=current_user.id)
-    new_follower = models.Followers(follower=current_user.id, follower_name=current_user.name, following_id=user.id)
+    new_following = models.Following(followee_id=user.id, followee_name=user.name, follower_id=current_user.id)
+    new_follower = models.Followers(follower_id=current_user.id, follower_name=current_user.name, followee_id=user.id)
     
-    already_followed = db.query(models.Following).filter(models.Following.following_name == new_following.following_name).first()
+    already_followed = db.query(models.Following).filter(models.Following.followee_name == new_following.followee_name).first()
 
     if already_followed:
         return "already following"

@@ -11,9 +11,6 @@ class TweetBase(BaseModel):
 
 
 
-
-    
-
 class Login(BaseModel):
     email:str
     password:str
@@ -31,22 +28,28 @@ class ShowUserName(BaseModel):
     class Config():
         orm_mode=True
 
-class Following(BaseModel):
-    following:int
-    following_name:str
 
-    
+
+class Following(BaseModel):
+    followee_id:int
+    followee_name:str
+
     class Config():
         orm_mode=True
+
+
     
 
 class Followers(BaseModel):
-    follower:int
+    follower_id:int
     follower_name:str
+
 
     
     class Config():
         orm_mode=True
+
+
 
 
 class CurrentUserProfile(BaseModel):

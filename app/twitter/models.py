@@ -36,17 +36,19 @@ class Tweet(Base):
 class Followers(Base):
     __tablename__ = "followers"
     id = Column(Integer, primary_key=True, index=True)
-    follower = Column(Integer)
+    followee_id = Column(Integer, ForeignKey("users.id"))
+    follower_id = Column(Integer)
     follower_name = Column(String)
-    following_id = Column(Integer, ForeignKey("users.id"))
+    
     
     user_profile_followers = relationship("User", back_populates="user_followers")
 
 class Following(Base):
     __tablename__ = "following"
     id = Column(Integer, primary_key=True, index=True)
-    following = Column(Integer)
-    following_name = Column(String)
     follower_id = Column(Integer, ForeignKey("users.id"))
+    followee_id = Column(Integer)
+    followee_name = Column(String)
+   
     
     user_profile_following = relationship("User", back_populates="user_following")
