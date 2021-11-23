@@ -16,7 +16,10 @@ deta link(published api url): https://pio7h0.deta.dev/docs
 
 ## To use
 
-1.Create a new virtualenvironment and install the dependencies  
+1.Create a new virtualenvironment and install the requirements.txt 
+```
+(venv) pip install -r requirements.txt
+```
 2.setup your datbase in database.py.refer https://fastapi.tiangolo.com/tutorial/sql-databases/
 
 3.Run on your machine:  
